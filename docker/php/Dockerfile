@@ -18,8 +18,6 @@ RUN apt update \
     # xdebugのインストール
     && pecl install xdebug \
     && docker-php-ext-enable xdebug 
-RUN docker-php-ext-install pcntl
-RUN docker-php-ext-configure pcntl --enable-pcntl
     
 # Composerのインストール & パス通す
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer

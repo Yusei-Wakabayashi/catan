@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class TestEvent implements ShuldBroadcast
+class TestBroadcastEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -27,10 +27,16 @@ class TestEvent implements ShuldBroadcast
      *
      * @return array<int, \Illuminate\Broadcasting\Channel>
      */
+
+    public function boradcastAs(): string
+    {
+        return 'TestBroadcastEvent';
+    }
+
     public function broadcastOn(): array
     {
         return [
-            new Channel('test-channel'),
+            new Channel('test-channel') // <- ここでチャンネルを定義
         ];
     }
 }
